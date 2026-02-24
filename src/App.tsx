@@ -8,6 +8,7 @@ import './App.css';
 
 function App() {
   const difficulty = 'core' as const;
+  const showDiscussionPrompts = false;
   const [testResults, setTestResults] = useState<TestResult[]>([]);
   const [isRunning, setIsRunning] = useState(false);
   const [totalTime, setTotalTime] = useState<number>();
@@ -75,16 +76,18 @@ function App() {
           <TestResults results={testResults} totalTime={totalTime} />
         </section>
 
-        <section className="panel followup-panel">
-          <h3>Discussion Prompts</h3>
-          <div>
-            <p><strong>1. Time Complexity:</strong> Is your solution O(N) or O(N²), and why?</p>
-            <p><strong>2. Space Complexity:</strong> How much additional memory does your approach require?</p>
-            <p><strong>3. Generic Design:</strong> How would you support an arbitrary set of pivot fields?</p>
-            <p><strong>4. Ordering Guarantees:</strong> How would you preserve the original group order?</p>
-            <p><strong>5. Abstraction:</strong> Can this be extracted into a reusable utility?</p>
-          </div>
-        </section>
+        {showDiscussionPrompts && (
+          <section className="panel followup-panel">
+            <h3>Discussion Prompts</h3>
+            <div>
+              <p><strong>1. Time Complexity:</strong> Is your solution O(N) or O(N²), and why?</p>
+              <p><strong>2. Space Complexity:</strong> How much additional memory does your approach require?</p>
+              <p><strong>3. Generic Design:</strong> How would you support an arbitrary set of pivot fields?</p>
+              <p><strong>4. Ordering Guarantees:</strong> How would you preserve the original group order?</p>
+              <p><strong>5. Abstraction:</strong> Can this be extracted into a reusable utility?</p>
+            </div>
+          </section>
+        )}
       </main>
     </div>
   );
