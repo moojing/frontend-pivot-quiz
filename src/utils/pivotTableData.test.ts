@@ -53,7 +53,7 @@ describe('pivotTableData', () => {
     ).toThrowError('Not implemented');
   });
 
-  it.skip.each(challengeCases)('challenge validation: $name', ({ input, expected }) => {
+  it.each(challengeCases)('challenge validation: $name', ({ input, expected }) => {
     expect(pivotTableData(input)).toEqual(expected);
   });
 });
