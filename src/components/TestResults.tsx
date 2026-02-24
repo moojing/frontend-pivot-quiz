@@ -10,6 +10,14 @@ interface Props {
   totalTime?: number;
 }
 
+function parseMismatchError(error: string): { actual: string; expected: string } | null {
+  const match = error.match(
+    /^Output does not match expected value\.\n\nActual:\n([\s\S]*?)\n\nExpected:\n([\s\S]*)$/
+  );
+  if (!match) return null;
+  return { actual: match[1], expected: match[2] };
+}
+
 export default function TestResults({ results, totalTime }: Props) {
   if (results.length === 0) {
     return (
@@ -56,11 +64,35 @@ export default function TestResults({ results, totalTime }: Props) {
                     {result.name}
                   </span>
                 </div>
-                {result.error && (
-                  <pre className="mt-2 p-3 bg-red-100 text-red-800 text-sm rounded overflow-x-auto">
-                    {result.error}
-                  </pre>
-                )}
+                {result.error && (() => {
+                  const mismatch = parseMismatchError(result.error);
+                  if (!mismatch) {
+                    return (
+                      <pre className="mt-2 p-3 bg-red-100 text-red-800 text-sm rounded overflow-x-auto">
+                        {result.error}
+                      </pre>
+                    );
+                  }
+                  return (
+                    <div className="mt-2 space-y-2">
+                      <p className="text-sm font-semibold text-red-700">
+                        Output does not match expected value.
+                      </p>
+                      <div>
+                        <p className="text-xs font-semibold uppercase text-amber-700">Actual</p>
+                        <pre className="mt-1 p-3 bg-amber-50 text-amber-800 text-sm rounded overflow-x-auto">
+                          {mismatch.actual}
+                        </pre>
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold uppercase text-blue-700">Expected</p>
+                        <pre className="mt-1 p-3 bg-blue-50 text-blue-800 text-sm rounded overflow-x-auto">
+                          {mismatch.expected}
+                        </pre>
+                      </div>
+                    </div>
+                  );
+                })()}
               </div>
               {result.time !== undefined && (
                 <span className="text-xs text-gray-500 ml-4">
