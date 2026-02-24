@@ -22,8 +22,11 @@ const challengeCases: {
         rows: [{ id: 'x', data: { ggr: 5, wagered: 25 } }]
       },
       {
-        group: 'B',
-        rows: [{ id: 'x', data: { ggr: 3, wagered: 15 } }]
+        group: 'C',
+        rows: [
+          { id: 'x', data: { ggr: 2, wagered: 10 } },
+          { id: 'z', data: { ggr: 7, wagered: 30 } }
+        ]
       }
     ],
     expected: [
@@ -31,13 +34,20 @@ const challengeCases: {
         id: 'x',
         metrics: {
           A: { ggr: 10, wagered: 50 },
-          B: { ggr: 8, wagered: 40 }
+          B: { ggr: 5, wagered: 25 },
+          C: { ggr: 2, wagered: 10 }
         }
       },
       {
         id: 'y',
         metrics: {
           A: { ggr: 20, wagered: 100 }
+        }
+      },
+      {
+        id: 'z',
+        metrics: {
+          C: { ggr: 7, wagered: 30 }
         }
       }
     ]

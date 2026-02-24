@@ -73,13 +73,16 @@ export default function ProblemDescription({ difficulty, testCases }: Props) {
         {difficulty === 'core' && (
           <div className="space-y-3 text-gray-700">
             <p>
-              The <code className="px-2 py-1 bg-gray-100 rounded text-sm">data</code> field is no longer a single number:
+              You are building a <strong>frontend table</strong>. The backend returns grouped records, but the UI needs rows keyed by <code className="px-2 py-1 bg-gray-100 rounded text-sm">id</code> with metrics organized by <code className="px-2 py-1 bg-gray-100 rounded text-sm">group</code>.
+            </p>
+            <p>
+              Each row includes a <code className="px-2 py-1 bg-gray-100 rounded text-sm">data</code> object with multiple metrics:
             </p>
             <pre className="p-3 bg-gray-100 rounded text-sm">
               {`{ id: "x", data: { ggr: 10, wagered: 50 } }`}
             </pre>
             <p>
-              Design a <strong>generic</strong> pivot solution that supports arbitrary metric keys.
+              Build a <strong>generic</strong> pivot function that reshapes backend payloads into a table-friendly structure and supports arbitrary metric keys.
             </p>
           </div>
         )}
