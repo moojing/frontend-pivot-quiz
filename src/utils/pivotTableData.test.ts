@@ -55,14 +55,6 @@ const challengeCases: {
 ];
 
 describe('pivotTableData', () => {
-  it('should throw Not implemented before completion', () => {
-    expect(() =>
-      pivotTableData([
-        { group: 'A', rows: [{ id: 'x', data: { ggr: 1, wagered: 2 } }] }
-      ])
-    ).toThrowError('Not implemented');
-  });
-
   it.each(challengeCases)('challenge validation: $name', ({ input, expected }) => {
     expect(pivotTableData(input)).toEqual(expected);
   });
