@@ -12,7 +12,7 @@ function App() {
   const [isRunning, setIsRunning] = useState(false);
   const [totalTime, setTotalTime] = useState<number>();
 
-  const handleRun = (code: string) => {
+  const handleRun = () => {
     setIsRunning(true);
     setTestResults([]);
     setTotalTime(undefined);
@@ -22,7 +22,7 @@ function App() {
       let results: TestResult[] = [];
 
       try {
-        results = runCaseTests(code, challengeTestCases);
+        results = runCaseTests(challengeTestCases);
       } catch (error) {
         results = [{
           name: 'Execution Error',
@@ -66,11 +66,7 @@ function App() {
           </section>
 
           <section className="panel panel-editor">
-            <CodeEditor
-              difficulty={difficulty}
-              onRun={handleRun}
-              isRunning={isRunning}
-            />
+            <CodeEditor onRun={handleRun} isRunning={isRunning} />
           </section>
         </div>
 

@@ -1,4 +1,5 @@
 import type { BasicInput, BasicOutput, PivotInput, PivotOutput } from '../types/pivot';
+import { pivotTableData } from './pivotTableData';
 
 export interface TestResult {
   name: string;
@@ -87,26 +88,14 @@ export function runBasicTests(
 }
 
 export function runCaseTests(
-  userFunction: string,
   testCases: { name: string; input: PivotInput[]; expected: PivotOutput[]; description: string }[]
 ): TestResult[] {
   const results: TestResult[] = [];
 
-  let fn: (input: PivotInput[]) => PivotOutput[];
-  try {
-    fn = new Function('return ' + userFunction)();
-  } catch (error) {
-    return [{
-      name: 'Compilation Error',
-      passed: false,
-      error: error instanceof Error ? error.message : String(error)
-    }];
-  }
-
   for (const testCase of testCases) {
     const startTime = performance.now();
     try {
-      const result = fn(testCase.input);
+      const result = pivotTableData(testCase.input);
       const endTime = performance.now();
 
       const passed = compareArrays(result, testCase.expected);

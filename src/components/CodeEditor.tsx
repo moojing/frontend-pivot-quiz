@@ -1,56 +1,15 @@
-import { useState } from 'react';
-
 interface Props {
-  difficulty: 'basic' | 'core' | 'trap';
-  onRun: (code: string) => void;
+  onRun: () => void;
   isRunning: boolean;
 }
 
-const templates = {
-  basic: `function pivot(input) {
-  // Convert group-based data to id-based records.
-  // Merge duplicate group + id pairs by summing values.
-
-  const result = new Map();
-
-  // TODO: Implement your logic.
-
-  return Array.from(result.values());
-}`,
-  core: `function pivotData(input) {
-  // Handle multi-field metric objects.
-  // data is an object, e.g. { ggr, wagered }.
-
-  const result = new Map();
-
-  // TODO: Implement your logic.
-
-  return Array.from(result.values());
-}`,
-  trap: `function pivotLarge(input) {
-  // Large-scale input benchmark.
-  // Avoid O(N²) operations such as repeated find/filter calls.
-  // Use Map-based indexing for an O(N) single pass.
-
-  const result = new Map();
-
-  // TODO: Implement your logic.
-
-  return Array.from(result.values());
-}`
-};
-
-export default function CodeEditor({ difficulty, onRun, isRunning }: Props) {
-  const [code, setCode] = useState(templates[difficulty]);
-
-  const handleRun = () => {
-    onRun(code);
-  };
+export default function CodeEditor({ onRun, isRunning }: Props) {
+  const handleRun = () => onRun();
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full justify-center">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-gray-900">Your Solution</h3>
+        <h3 className="text-lg font-semibold text-gray-900">Validation</h3>
         <button
           onClick={handleRun}
           disabled={isRunning}
@@ -59,17 +18,9 @@ export default function CodeEditor({ difficulty, onRun, isRunning }: Props) {
           {isRunning ? 'Running...' : 'Run Tests'}
         </button>
       </div>
-
-      <textarea
-        value={code}
-        onChange={(e) => setCode(e.target.value)}
-        className="flex-1 w-full p-4 font-mono text-sm bg-gray-900 text-gray-100 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-        spellCheck={false}
-      />
-
-      <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-        <p className="text-sm text-yellow-800">
-          <strong>Tip:</strong> Build an id-to-metrics index with Map in a single O(N) pass.
+      <div className="p-3 bg-gray-50 border border-gray-200 rounded-lg">
+        <p className="text-sm text-gray-700">
+          Implement your logic in <code className="px-2 py-1 bg-gray-100 rounded text-sm">src/utils/pivotTableData.ts</code>, then run tests to verify.
         </p>
       </div>
     </div>
