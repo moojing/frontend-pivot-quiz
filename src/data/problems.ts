@@ -3,31 +3,31 @@ import type { TestCase, BasicInput, BasicOutput, AdvancedInput, AdvancedOutput, 
 export const difficulties: DifficultyLevel[] = [
   {
     id: 'basic',
-    title: '基礎版：Pivot with Merge',
-    description: '將 group-based 資料轉換成 id-based，並合併重複的 group',
-    timeLimit: '15 分鐘',
+    title: 'Basic: Pivot with Merge',
+    description: 'Transform group-based input into id-based records and merge duplicate groups.',
+    timeLimit: '15 minutes',
     concepts: ['Hash Map', 'Single Pass O(N)', 'Aggregation']
   },
   {
     id: 'advanced',
-    title: '進階版：Generic Pivot',
-    description: '處理多維度資料，支援任意欄位的 pivot',
-    timeLimit: '20 分鐘',
+    title: 'Generic Pivot',
+    description: 'Transform multi-field metrics with a reusable pivot approach.',
+    timeLimit: '20 minutes',
     concepts: ['Generic Types', 'Nested Objects', 'Deep Merge']
   },
   {
     id: 'trap',
-    title: '陷阱版：Large Dataset',
-    description: '10 萬筆資料，測試是否會寫出 O(N²) 解法',
-    timeLimit: '15 分鐘',
+    title: 'Performance: Large Dataset',
+    description: 'Stress test with 100,000 records to detect O(N²) implementations.',
+    timeLimit: '15 minutes',
     concepts: ['Time Complexity', 'Space Complexity', 'Performance']
   }
 ];
 
 export const basicTestCases: TestCase<BasicInput[], BasicOutput[]>[] = [
   {
-    name: '範例 1：基本 pivot',
-    description: '單一 group，多個 id',
+    name: 'Example 1: Basic Pivot',
+    description: 'Single group with multiple ids.',
     input: [
       {
         group: "A",
@@ -49,8 +49,8 @@ export const basicTestCases: TestCase<BasicInput[], BasicOutput[]>[] = [
     ]
   },
   {
-    name: '範例 2：重複 group 需要 merge',
-    description: '相同 group 出現多次，需要加總',
+    name: 'Example 2: Merge Duplicate Group Entries',
+    description: 'The same group appears multiple times and must be aggregated.',
     input: [
       {
         group: "B",
@@ -69,8 +69,8 @@ export const basicTestCases: TestCase<BasicInput[], BasicOutput[]>[] = [
     ]
   },
   {
-    name: '範例 3：完整混合',
-    description: '多個 group，多個 id，有重複需要合併',
+    name: 'Example 3: Mixed Complete Case',
+    description: 'Multiple groups and ids with duplicated entries requiring merge.',
     input: [
       {
         group: "A",
@@ -110,8 +110,8 @@ export const basicTestCases: TestCase<BasicInput[], BasicOutput[]>[] = [
 
 export const advancedTestCases: TestCase<AdvancedInput[], AdvancedOutput[]>[] = [
   {
-    name: '進階 1：多欄位資料',
-    description: 'value 不是單一數字，而是 { ggr, wagered } 物件',
+    name: 'Case 1: Multi-field Metrics',
+    description: 'Each row contains a metric object such as { ggr, wagered } instead of a single value.',
     input: [
       {
         group: "A",
@@ -152,8 +152,8 @@ export const advancedTestCases: TestCase<AdvancedInput[], AdvancedOutput[]>[] = 
 ];
 
 export const trapTestCase: TestCase<BasicInput[], BasicOutput[]> = {
-  name: '陷阱：10 萬筆資料',
-  description: '測試時間複雜度，O(N²) 會超時',
+  name: 'Performance Trap: 100,000 Records',
+  description: 'Validates time complexity; O(N²) implementations should time out.',
   input: Array.from({ length: 1000 }, (_, i) => ({
     group: `G${i % 100}`,
     rows: Array.from({ length: 100 }, (_, j) => ({

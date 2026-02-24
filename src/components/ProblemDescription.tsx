@@ -55,17 +55,17 @@ export default function ProblemDescription({ difficulty, testCases }: Props) {
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="text-xl font-bold text-gray-900 mb-3">題目描述</h3>
+        <h3 className="text-xl font-bold text-gray-900 mb-3">Problem Statement</h3>
 
         {difficulty === 'basic' && (
           <div className="space-y-3 text-gray-700">
             <p>
-              給你一個陣列，表示資料被<strong>第一層 key（group）</strong>分組：
+              You are given an array grouped by a first-level key: <strong>group</strong>.
             </p>
             <ul className="list-disc list-inside space-y-1 ml-4">
-              <li>外層 <code className="px-2 py-1 bg-gray-100 rounded text-sm">group</code> → 要變成 column</li>
-              <li>內層 <code className="px-2 py-1 bg-gray-100 rounded text-sm">id</code> → 要變成 row</li>
-              <li>相同 <code className="px-2 py-1 bg-gray-100 rounded text-sm">group + id</code> 要<strong>合併（加總）</strong></li>
+              <li>Outer <code className="px-2 py-1 bg-gray-100 rounded text-sm">group</code> becomes a column key.</li>
+              <li>Inner <code className="px-2 py-1 bg-gray-100 rounded text-sm">id</code> becomes a row key.</li>
+              <li>Duplicate <code className="px-2 py-1 bg-gray-100 rounded text-sm">group + id</code> pairs must be <strong>merged (summed)</strong>.</li>
             </ul>
           </div>
         )}
@@ -73,13 +73,13 @@ export default function ProblemDescription({ difficulty, testCases }: Props) {
         {difficulty === 'advanced' && (
           <div className="space-y-3 text-gray-700">
             <p>
-              現在 <code className="px-2 py-1 bg-gray-100 rounded text-sm">value</code> 不是單一數字，而是：
+              The <code className="px-2 py-1 bg-gray-100 rounded text-sm">data</code> field is no longer a single number:
             </p>
             <pre className="p-3 bg-gray-100 rounded text-sm">
               {`{ id: "x", data: { ggr: 10, wagered: 50 } }`}
             </pre>
             <p>
-              你需要<strong>泛型化</strong>你的解法，支援任意欄位的 pivot。
+              Design a <strong>generic</strong> pivot solution that supports arbitrary metric keys.
             </p>
           </div>
         )}
@@ -87,14 +87,14 @@ export default function ProblemDescription({ difficulty, testCases }: Props) {
         {difficulty === 'trap' && (
           <div className="space-y-3 text-gray-700">
             <p>
-              這次資料量是 <strong>10 萬筆</strong>。
+              This dataset contains <strong>100,000 records</strong>.
             </p>
             <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-              <p className="font-semibold text-red-900 mb-2">⚠️ 陷阱警告</p>
+              <p className="font-semibold text-red-900 mb-2">Performance Warning</p>
               <ul className="list-disc list-inside space-y-1 text-sm text-red-800">
-                <li>如果使用 <code className="px-2 py-1 bg-red-100 rounded">find()</code> 或 <code className="px-2 py-1 bg-red-100 rounded">filter()</code>，會是 O(N²)</li>
-                <li>必須使用 <strong>Map</strong> 建立索引，才能做到 O(N)</li>
-                <li>目標：在 <strong>100ms</strong> 內完成</li>
+                <li>Using <code className="px-2 py-1 bg-red-100 rounded">find()</code> or <code className="px-2 py-1 bg-red-100 rounded">filter()</code> repeatedly can degrade to O(N²).</li>
+                <li>Use <strong>Map</strong>-based indexing to keep the solution O(N).</li>
+                <li>Target runtime: under <strong>100ms</strong>.</li>
               </ul>
             </div>
           </div>
@@ -102,13 +102,13 @@ export default function ProblemDescription({ difficulty, testCases }: Props) {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-gray-900 mb-3">範例測試</h3>
+        <h3 className="text-xl font-bold text-gray-900 mb-3">Sample Tests</h3>
         <div className="space-y-4">
           {difficulty === 'trap' ? (
             <div className="bg-gray-50 p-4 rounded-lg">
-              <h4 className="font-semibold text-gray-900 mb-2">大數據測試</h4>
+              <h4 className="font-semibold text-gray-900 mb-2">Large Dataset Test</h4>
               <p className="text-sm text-gray-600">
-                1,000 個 group × 100 個 id = 10 萬筆資料
+                1,000 groups x 100 ids = 100,000 records
               </p>
             </div>
           ) : difficulty === 'advanced' ? (
@@ -120,10 +120,10 @@ export default function ProblemDescription({ difficulty, testCases }: Props) {
       </div>
 
       <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-        <h4 className="font-semibold text-blue-900 mb-2">🎯 核心概念</h4>
+        <h4 className="font-semibold text-blue-900 mb-2">Core Concept</h4>
         <p className="text-sm text-blue-800">
-          這題本質是 <strong>Matrix Transpose + Aggregation</strong>：
-          將 group → id 的結構，轉換成 id → group 的結構。
+          This exercise is essentially <strong>matrix transpose + aggregation</strong>:
+          convert a group-to-id structure into an id-to-group structure.
         </p>
       </div>
     </div>

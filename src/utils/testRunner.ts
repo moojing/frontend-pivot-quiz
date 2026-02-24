@@ -52,7 +52,7 @@ export function runBasicTests(
     fn = new Function('return ' + userFunction)();
   } catch (error) {
     return [{
-      name: '編譯錯誤',
+      name: 'Compilation Error',
       passed: false,
       error: error instanceof Error ? error.message : String(error)
     }];
@@ -69,7 +69,7 @@ export function runBasicTests(
       results.push({
         name: testCase.name,
         passed,
-        error: passed ? undefined : `輸出不符合預期\n\n實際輸出: ${JSON.stringify(result, null, 2)}\n\n預期輸出: ${JSON.stringify(testCase.expected, null, 2)}`,
+        error: passed ? undefined : `Output does not match expected value.\n\nActual:\n${JSON.stringify(result, null, 2)}\n\nExpected:\n${JSON.stringify(testCase.expected, null, 2)}`,
         time: endTime - startTime
       });
     } catch (error) {
@@ -97,7 +97,7 @@ export function runAdvancedTests(
     fn = new Function('return ' + userFunction)();
   } catch (error) {
     return [{
-      name: '編譯錯誤',
+      name: 'Compilation Error',
       passed: false,
       error: error instanceof Error ? error.message : String(error)
     }];
@@ -114,7 +114,7 @@ export function runAdvancedTests(
       results.push({
         name: testCase.name,
         passed,
-        error: passed ? undefined : `輸出不符合預期\n\n實際輸出: ${JSON.stringify(result, null, 2)}\n\n預期輸出: ${JSON.stringify(testCase.expected, null, 2)}`,
+        error: passed ? undefined : `Output does not match expected value.\n\nActual:\n${JSON.stringify(result, null, 2)}\n\nExpected:\n${JSON.stringify(testCase.expected, null, 2)}`,
         time: endTime - startTime
       });
     } catch (error) {
@@ -140,7 +140,7 @@ export function runTrapTest(
     fn = new Function('return ' + userFunction)();
   } catch (error) {
     return {
-      name: '編譯錯誤',
+      name: 'Compilation Error',
       passed: false,
       error: error instanceof Error ? error.message : String(error)
     };
@@ -155,17 +155,17 @@ export function runTrapTest(
     const passed = duration < 100;
 
     return {
-      name: '10 萬筆資料效能測試',
+      name: 'Large Dataset Performance Test',
       passed,
       error: passed
         ? undefined
-        : `執行時間過長（${duration.toFixed(2)}ms），可能是 O(N²) 解法。\n\n建議：使用 Map 來避免重複查找。`,
+        : `Execution time is too high (${duration.toFixed(2)}ms), which may indicate an O(N²) approach.\n\nRecommendation: use Map-based indexing to avoid repeated lookups.`,
       time: duration
     };
   } catch (error) {
     const endTime = performance.now();
     return {
-      name: '10 萬筆資料效能測試',
+      name: 'Large Dataset Performance Test',
       passed: false,
       error: error instanceof Error ? error.message : String(error),
       time: endTime - startTime
