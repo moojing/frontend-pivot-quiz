@@ -45,7 +45,7 @@ function App() {
     <div className="app">
       <header className="app-header">
         <div className="app-header-inner">
-          <h1 className="app-title">Pivot + Merge Practice</h1>
+          <h1 className="app-title">Frontend Interview Challenge: Pivot Table Transformation</h1>
           <p className="app-subtitle">
             A data transformation exercise that converts group-based input into id-based records.
           </p>
@@ -53,11 +53,6 @@ function App() {
       </header>
 
       <main className="app-main">
-        <section className="panel intro-panel">
-          <h2>Practice Task</h2>
-          <p>Focus on building a clear and reliable generic pivot transformation.</p>
-        </section>
-
         <div className="panel-grid">
           <section className="panel">
             <ProblemDescription
