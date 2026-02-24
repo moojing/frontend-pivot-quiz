@@ -9,13 +9,13 @@ interface Props {
 export default function ProblemCard({ difficulty, isSelected, onSelect }: Props) {
   const colors = {
     basic: 'border-green-500 bg-green-50',
-    advanced: 'border-orange-500 bg-orange-50',
+    core: 'border-orange-500 bg-orange-50',
     trap: 'border-red-500 bg-red-50'
   };
 
   const textColors = {
     basic: 'text-green-900',
-    advanced: 'text-orange-900',
+    core: 'text-orange-900',
     trap: 'text-red-900'
   };
 

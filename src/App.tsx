@@ -2,12 +2,12 @@ import { useState } from 'react';
 import ProblemDescription from './components/ProblemDescription';
 import CodeEditor from './components/CodeEditor';
 import TestResults from './components/TestResults';
-import { advancedTestCases } from './data/problems';
-import { runAdvancedTests, type TestResult } from './utils/testRunner';
+import { challengeTestCases } from './data/problems';
+import { runCaseTests, type TestResult } from './utils/testRunner';
 import './App.css';
 
 function App() {
-  const difficulty = 'advanced' as const;
+  const difficulty = 'core' as const;
   const [testResults, setTestResults] = useState<TestResult[]>([]);
   const [isRunning, setIsRunning] = useState(false);
   const [totalTime, setTotalTime] = useState<number>();
@@ -22,7 +22,7 @@ function App() {
       let results: TestResult[] = [];
 
       try {
-        results = runAdvancedTests(code, advancedTestCases);
+        results = runCaseTests(code, challengeTestCases);
       } catch (error) {
         results = [{
           name: 'Execution Error',
@@ -38,7 +38,7 @@ function App() {
     }, 100);
   };
 
-  const currentTestCases = advancedTestCases;
+  const currentTestCases = challengeTestCases;
 
   return (
     <div className="app">

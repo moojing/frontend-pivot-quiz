@@ -1,4 +1,4 @@
-import type { BasicInput, BasicOutput, AdvancedInput, AdvancedOutput } from '../types/pivot';
+import type { BasicInput, BasicOutput, PivotInput, PivotOutput } from '../types/pivot';
 
 export interface TestResult {
   name: string;
@@ -86,13 +86,13 @@ export function runBasicTests(
   return results;
 }
 
-export function runAdvancedTests(
+export function runCaseTests(
   userFunction: string,
-  testCases: { name: string; input: AdvancedInput[]; expected: AdvancedOutput[]; description: string }[]
+  testCases: { name: string; input: PivotInput[]; expected: PivotOutput[]; description: string }[]
 ): TestResult[] {
   const results: TestResult[] = [];
 
-  let fn: (input: AdvancedInput[]) => AdvancedOutput[];
+  let fn: (input: PivotInput[]) => PivotOutput[];
   try {
     fn = new Function('return ' + userFunction)();
   } catch (error) {

@@ -1,7 +1,7 @@
-import type { TestCase, BasicInput, BasicOutput, AdvancedInput, AdvancedOutput } from '../types/pivot';
+import type { TestCase, BasicInput, BasicOutput, PivotInput, PivotOutput } from '../types/pivot';
 
 interface Props {
-  difficulty: 'basic' | 'advanced' | 'trap';
+  difficulty: 'basic' | 'core' | 'trap';
   testCases: TestCase<unknown, unknown>[];
 }
 
@@ -29,7 +29,7 @@ export default function ProblemDescription({ difficulty, testCases }: Props) {
     </div>
   );
 
-  const renderAdvancedExample = (testCase: TestCase<AdvancedInput[], AdvancedOutput[]>) => (
+  const renderCaseExample = (testCase: TestCase<PivotInput[], PivotOutput[]>) => (
     <div key={testCase.name} className="bg-gray-50 p-4 rounded-lg">
       <h4 className="font-semibold text-gray-900 mb-2">{testCase.name}</h4>
       <p className="text-sm text-gray-600 mb-3">{testCase.description}</p>
@@ -70,7 +70,7 @@ export default function ProblemDescription({ difficulty, testCases }: Props) {
           </div>
         )}
 
-        {difficulty === 'advanced' && (
+        {difficulty === 'core' && (
           <div className="space-y-3 text-gray-700">
             <p>
               The <code className="px-2 py-1 bg-gray-100 rounded text-sm">data</code> field is no longer a single number:
@@ -111,8 +111,8 @@ export default function ProblemDescription({ difficulty, testCases }: Props) {
                 1,000 groups x 100 ids = 100,000 records
               </p>
             </div>
-          ) : difficulty === 'advanced' ? (
-            testCases.map(tc => renderAdvancedExample(tc as TestCase<AdvancedInput[], AdvancedOutput[]>))
+          ) : difficulty === 'core' ? (
+            testCases.map(tc => renderCaseExample(tc as TestCase<PivotInput[], PivotOutput[]>))
           ) : (
             testCases.map(tc => renderBasicExample(tc as TestCase<BasicInput[], BasicOutput[]>))
           )}

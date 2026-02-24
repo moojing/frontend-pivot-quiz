@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 interface Props {
-  difficulty: 'basic' | 'advanced' | 'trap';
+  difficulty: 'basic' | 'core' | 'trap';
   onRun: (code: string) => void;
   isRunning: boolean;
 }
@@ -17,7 +17,7 @@ const templates = {
 
   return Array.from(result.values());
 }`,
-  advanced: `function pivotData(input) {
+  core: `function pivotData(input) {
   // Handle multi-field metric objects.
   // data is an object, e.g. { ggr, wagered }.
 

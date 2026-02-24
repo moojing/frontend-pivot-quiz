@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import type { AdvancedInput, AdvancedOutput } from '../types/pivot';
-import { pivotTableData } from './solveAdvancedPivot';
+import type { PivotInput, PivotOutput } from '../types/pivot';
+import { pivotTableData } from './pivotTableData';
 
-const advancedTestCases: {
+const challengeCases: {
   name: string;
-  input: AdvancedInput[];
-  expected: AdvancedOutput[];
+  input: PivotInput[];
+  expected: PivotOutput[];
 }[] = [
   {
     name: 'Case 1: Multi-field Metrics',
@@ -53,7 +53,7 @@ describe('pivotTableData', () => {
     ).toThrowError('Not implemented');
   });
 
-  it.skip.each(advancedTestCases)('challenge validation: $name', ({ input, expected }) => {
+  it.skip.each(challengeCases)('challenge validation: $name', ({ input, expected }) => {
     expect(pivotTableData(input)).toEqual(expected);
   });
 });

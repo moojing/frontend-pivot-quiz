@@ -1,4 +1,4 @@
-import type { TestCase, BasicInput, BasicOutput, AdvancedInput, AdvancedOutput, DifficultyLevel } from '../types/pivot';
+import type { TestCase, BasicInput, BasicOutput, PivotInput, PivotOutput, DifficultyLevel } from '../types/pivot';
 
 export const difficulties: DifficultyLevel[] = [
   {
@@ -9,7 +9,7 @@ export const difficulties: DifficultyLevel[] = [
     concepts: ['Hash Map', 'Single Pass O(N)', 'Aggregation']
   },
   {
-    id: 'advanced',
+    id: 'core',
     title: 'Generic Pivot',
     description: 'Transform multi-field metrics with a reusable pivot approach.',
     timeLimit: '20 minutes',
@@ -108,7 +108,7 @@ export const basicTestCases: TestCase<BasicInput[], BasicOutput[]>[] = [
   }
 ];
 
-export const advancedTestCases: TestCase<AdvancedInput[], AdvancedOutput[]>[] = [
+export const challengeTestCases: TestCase<PivotInput[], PivotOutput[]>[] = [
   {
     name: 'Case 1: Multi-field Metrics',
     description: 'Each row contains a metric object such as { ggr, wagered } instead of a single value.',
